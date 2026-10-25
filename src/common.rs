@@ -2357,7 +2357,30 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
     ThrottledInterval::new(i)
 }
 
+/// Avis Flash Assistance : nom de l'application et serveur de support verrouillés.
+/// Appliqué avant toute lecture de configuration (voir `load_custom_client`).
+pub const AVISFLASH_SERVER: &str = "31.207.39.15";
+pub const AVISFLASH_KEY: &str = "0yzSTQQZULANEPCBpKVWqy1Na+QzvtiZePwkGFD03Ag=";
+
+pub fn apply_avisflash_branding() {
+    *config::APP_NAME.write().unwrap() = "AvisFlashAssistance".to_owned();
+    let mut settings = config::OVERWRITE_SETTINGS.write().unwrap();
+    settings.insert(
+        keys::OPTION_CUSTOM_RENDEZVOUS_SERVER.to_owned(),
+        AVISFLASH_SERVER.to_owned(),
+    );
+    settings.insert("relay-server".to_owned(), AVISFLASH_SERVER.to_owned());
+    settings.insert(keys::OPTION_KEY.to_owned(), AVISFLASH_KEY.to_owned());
+    // Jamais de mise à jour vers le RustDesk officiel.
+    settings.insert(keys::OPTION_ALLOW_AUTO_UPDATE.to_owned(), "N".to_owned());
+    config::OVERWRITE_LOCAL_SETTINGS
+        .write()
+        .unwrap()
+        .insert(keys::OPTION_ENABLE_CHECK_UPDATE.to_owned(), "N".to_owned());
+}
+
 pub fn load_custom_client() {
+    apply_avisflash_branding();
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());

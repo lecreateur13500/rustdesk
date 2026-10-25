@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RustDesk</string>
-    <string name="accessibility_service_description">Allow other devices to control your phone using virtual touch, when RustDesk screen sharing is established</string>
-    <string name="foreground_service_special_use_subtype">Keeps the RustDesk remote desktop host available for authorized unattended connections and foreground notifications without starting screen capture before user approval.</string>
+    <string name="app_name">Avis Flash Assistance</string>
+    <string name="accessibility_service_description">Permet au support Avis Flash de piloter cet appareil (toucher virtuel) pendant une session d\'assistance à distance autorisée.</string>
+    <string name="foreground_service_special_use_subtype">Garde le service Avis Flash Assistance disponible pour les interventions à distance autorisées et ses notifications, sans démarrer la capture d\'écran avant l\'accord de l\'utilisateur.</string>
 </resources>
